@@ -1,0 +1,2 @@
+class NdcPackage < ApplicationRecord
+end

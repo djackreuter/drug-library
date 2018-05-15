@@ -1,0 +1,2 @@
+class NdcProduct < ApplicationRecord
+end

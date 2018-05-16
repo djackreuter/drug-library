@@ -8,20 +8,20 @@ RUN apt-get update && apt-get install -y \
   nodejs
 
 # Configure the main working directory. 
-RUN mkdir -p /rx-norm-rails
-WORKDIR /rx-norm-rails
+RUN mkdir -p /drug-library
+WORKDIR /drug-library
 
 # Copy the Gemfile as well as the Gemfile.lock and install 
 # the RubyGems. This is a separate step so the dependencies 
 # will be cached unless changes to one of those two files 
 # are made.
-COPY Gemfile /rx-norm-rails/Gemfile 
-COPY Gemfile.lock /rx-norm-rails/Gemfile.lock
+COPY Gemfile /drug-library/Gemfile 
+COPY Gemfile.lock /drug-library/Gemfile.lock
 # RUN gem install bundler && bundle install --jobs 20 --retry 5
 RUN bundle install
 
 # Copy the main application.
-COPY . /rx-norm-rails
+COPY . /drug-library
 
 # Expose port 3000 to the Docker host, so it can be accessed 
 # from the outside.

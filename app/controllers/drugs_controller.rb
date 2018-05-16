@@ -1,7 +1,7 @@
 class DrugsController < ApplicationController
   def query
     drugs = NdcProduct.search(search_params)
-    render json: { status: 200, data: drugs }, status: :ok
+    render json: drugs, status: :ok
   end
 
   private

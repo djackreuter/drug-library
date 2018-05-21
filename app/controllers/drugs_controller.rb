@@ -1,17 +1,22 @@
 class DrugsController < ApplicationController
   def query
-    drugs = NdcProduct.search(search_params)
+    drugs = NdcProduct.search(search_params[:search].capitalize)
     render json: drugs, status: :ok
   end
 
   def specific_drug
-    drug = NdcProduct.find_drug(search_params)
+    drug = NdcProduct.find_drug(search_params[:search].capitalize)
+    render json: drug, status: :ok
+  end
+
+  def dosage_strength
+    drug = NdcProduct.get_strength(search_params[:search].capitalize, search_params[:strength])
     render json: drug, status: :ok
   end
 
   private
 
   def search_params
-    params.permit(:search)[:search].capitalize
+    params.permit(:search, :strength)
   end
 end

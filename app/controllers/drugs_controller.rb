@@ -10,13 +10,13 @@ class DrugsController < ApplicationController
   end
 
   def dosage_strength
-    drug = NdcProduct.get_strength(search_params[:search].capitalize, search_params[:strength])
+    drug = NdcProduct.get_strength(search_params[:search].capitalize, search_params[:dose_form])
     render json: drug, status: :ok
   end
 
   private
 
   def search_params
-    params.permit(:search, :strength)
+    params.permit(:search, :dose_form)
   end
 end

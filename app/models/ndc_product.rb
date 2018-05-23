@@ -1,6 +1,6 @@
 class NdcProduct < ApplicationRecord
   def self.search(search)
-    where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "%#{search}%", "%#{search}%").select('DISTINCT(ndc_products.proprietary_name)').order(:proprietary_name)
+    where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "#{search}%", "#{search}%")
   end
 
   def self.find_drug(search)

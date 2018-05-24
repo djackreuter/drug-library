@@ -4,7 +4,7 @@ class NdcProduct < ApplicationRecord
   end
 
   def self.find_drug(product_id)
-    where('product_id=?', "#{product_id}")
+    find_by('product_id=?', "#{product_id}")
   end
 
   def self.get_strength(search, dose_form)

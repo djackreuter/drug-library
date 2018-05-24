@@ -3,8 +3,8 @@ class NdcProduct < ApplicationRecord
     where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "#{search}%", "#{search}%")
   end
 
-  def self.find_drug(search)
-    where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "%#{search}%", "%#{search}%").select('DISTINCT(ndc_products.dosage_form_name)').order(:dosage_form_name)
+  def self.find_drug(product_id)
+    where('product_id=?', "#{product_id}")
   end
 
   def self.get_strength(search, dose_form)

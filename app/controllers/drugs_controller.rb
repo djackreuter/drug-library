@@ -5,7 +5,7 @@ class DrugsController < ApplicationController
   end
 
   def specific_drug
-    drug = NdcProduct.find_drug(search_params[:search].capitalize)
+    drug = NdcProduct.find_drug(search_params[:product_id])
     render json: drug, status: :ok
   end
 
@@ -17,6 +17,6 @@ class DrugsController < ApplicationController
   private
 
   def search_params
-    params.permit(:search, :dose_form)
+    params.permit(:search, :dose_form, :product_id)
   end
 end

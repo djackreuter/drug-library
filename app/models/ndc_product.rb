@@ -14,4 +14,9 @@ class NdcProduct < ApplicationRecord
   def self.get_strength(search, dose_form)
     where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "%#{search}%", "%#{search}%").where(dosage_form_name: dose_form).pluck(:active_numerator_strength, :active_ingred_unit).uniq
   end
+
+  def self.get_drug_info(name)
+    drugs = where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "%#{name}%","%#{name}%")
+    ::DrugInfo.format_results(name, drugs)
+  end
 end

@@ -29,6 +29,11 @@ class DrugsController < ApplicationController
     render json: drug, status: :ok
   end
 
+  def drug_info
+    drug = NdcProduct.get_drug_info(search_params[:search].capitalize)
+    render json: drug, status: :ok
+  end
+
   private
 
   def search_params

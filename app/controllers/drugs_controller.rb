@@ -15,8 +15,9 @@ class DrugsController < ApplicationController
     render json: drugs, status: :ok
   end
 
-  def throw_error
-    raise ArgumentError, 'No search params specified'
+  def ndc_number
+    ndc_num = NdcProduct.get_ndc_num(search_params[:name], search_params[:dose_form], search_params[:strength])
+    render json: ndc_num, status: :ok
   end
 
   def specific_drug
@@ -34,9 +35,13 @@ class DrugsController < ApplicationController
     render json: drug, status: :ok
   end
 
+  def throw_error
+    raise ArgumentError, 'No search params specified'
+  end
+
   private
 
   def search_params
-    params.permit(:search, :dose_form, :name)
+    params.permit(:search, :dose_form, :name, :strength)
   end
 end

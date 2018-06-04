@@ -21,6 +21,6 @@ class NdcProduct < ApplicationRecord
   end
 
   def self.get_ndc_num(name, dose_form, strength)
-    where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "%#{name}%","%#{name}%").where(dosage_form_name: dose_form).where(active_numerator_strength: strength).pluck(:product_ndc)
+    where('proprietary_name LIKE ? OR non_proprietary_name LIKE ?', "%#{name}%","%#{name}%").where(dosage_form_name: dose_form).where(active_numerator_strength: strength).map(&:product_ndc).first
   end
 end
